@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#102b46">
+  <meta name="description" content="Veritas International Schools nurtures confident learners through academic excellence, integrity and character.">
+  <title>{% if title %}{{ title }} | {% endif %}{{ school.name }}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="topbar"><div class="container topbar-inner"><span>Learning with purpose. Leading with integrity.</span><span>{{ school.phone }} &nbsp;·&nbsp; {{ school.email }}</span></div></div>
+  <header class="site-header"><div class="container nav-wrap">
+    <a class="brand" href="{{ url_for('home') }}" aria-label="{{ school.name }} home"><span class="brand-mark">V</span><span><strong>VERITAS</strong><small>INTERNATIONAL SCHOOLS</small></span></a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" onclick="document.querySelector('.nav-links').classList.toggle('open');this.setAttribute('aria-expanded',document.querySelector('.nav-links').classList.contains('open'))">☰</button>
+    <nav class="nav-links"><a href="{{ url_for('home') }}">Home</a><a href="{{ url_for('about') }}">About</a><a href="{{ url_for('academics') }}">Academics</a><a href="{{ url_for('admissions') }}">Admissions</a><a href="{{ url_for('contact') }}">Contact</a><a class="nav-cta" href="{{ url_for('admissions') }}">Enquire Now ↗</a></nav>
+  </div></header>
+  {% with messages = get_flashed_messages(with_categories=true) %}{% if messages %}<div class="container flash-wrap">{% for category, message in messages %}<div class="flash {{ category }}" role="status">{{ message }}</div>{% endfor %}</div>{% endif %}{% endwith %}
+  <main>{% block content %}{% endblock %}</main>
+  <footer class="footer"><div class="container footer-grid"><div><a class="brand brand-light" href="{{ url_for('home') }}"><span class="brand-mark">V</span><span><strong>VERITAS</strong><small>INTERNATIONAL SCHOOLS</small></span></a><p class="footer-copy">Inspiring a lifelong love of learning, strong character and the confidence to shape tomorrow.</p></div><div><h4>Explore</h4><a href="{{ url_for('about') }}">Our School</a><a href="{{ url_for('academics') }}">Academic Programmes</a><a href="{{ url_for('admissions') }}">Admissions</a></div><div><h4>Get in touch</h4><p>{{ school.address }}</p><p>{{ school.phone }}</p><p>{{ school.email }}</p>{% if school.whatsapp %}<a href="https://wa.me/{{ school.whatsapp|replace('+','')|replace(' ','') }}" target="_blank" rel="noopener">Chat on WhatsApp ↗</a>{% endif %}</div></div><div class="container footer-bottom"><span>© {{ 2026 }} {{ school.name }}. All rights reserved.</span><a href="{{ url_for('admin_login') }}">Staff portal</a></div></footer>
+</body></html>
