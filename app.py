@@ -3,17 +3,15 @@ import secrets
 import sqlite3
 from functools import wraps
 from datetime import datetime
-from dotenv import load_dotenv
 from flask import Flask, render_template, request, redirect, url_for, flash, session, abort
 from werkzeug.security import check_password_hash, generate_password_hash
 
 
-load_dotenv()
 
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 DATABASE = os.environ.get('VERITAS_DATABASE', os.path.join(BASE_DIR, 'veritas.db'))
 app = Flask(__name__)
-app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'dev-only-change-this-secret-before-deployment')
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', secrets.token_urlsafe(32))
 app.config['MAX_CONTENT_LENGTH'] = 1 * 1024 * 1024
 
 SCHOOL = {

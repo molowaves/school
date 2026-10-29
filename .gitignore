@@ -1,7 +1,57 @@
+instance/
+.webassets-cache
+.flaskenv
+
+# === Environments & Secrets ===
+.env
+*.env
+env/
+venv/
+ENV/
 .venv/
+
+# === Python Bytecode & Cache ===
 __pycache__/
 *.py[cod]
-.env
-veritas.db
-instance/
+*$py.class
+*.so
+
+# === Databases ===
+*.db
+*.sqlite3
+
+# === Distribution & Packaging ===
+build/
+dist/
+eggs/
+lib/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+wheels/
+
+# === Testing & Coverage ===
+htmlcov/
+.tox/
+.coverage
+.cache
+.pytest_cache/
+nosetests.xml
+coverage.xml
+.hypothesis/
+
+# === Logs ===
+*.log
+pip-log.txt
+
+# === IDEs & OS Files ===
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
 .DS_Store
+Thumbs.db
